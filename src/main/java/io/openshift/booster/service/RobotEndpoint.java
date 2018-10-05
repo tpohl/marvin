@@ -39,7 +39,7 @@ public class RobotEndpoint {
     @GET   
     public Object ping() {        
         
-        String response = restTemplate.getForObject(edgeControllerEndpoint, String.class);        
+        String response = restTemplate.getForObject(hubControllerEndpoint, String.class);        
         return response;
     }
 
