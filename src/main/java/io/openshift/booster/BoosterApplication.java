@@ -21,6 +21,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+
+// This is the main class of your Robot Controller Application.
+// You do not need to modify this
 @SpringBootApplication
 //@EnableSwagger2
 public class BoosterApplication {
