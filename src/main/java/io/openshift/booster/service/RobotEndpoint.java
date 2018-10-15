@@ -45,7 +45,7 @@ public class RobotEndpoint {
     @GET   
     public Object ping() {                
         
-        System.out.println("Ping method invoked")
+        System.out.println("Ping method invoked");
         String response = restTemplate.getForObject(hubControllerEndpoint, String.class);        
         return response;
     }
