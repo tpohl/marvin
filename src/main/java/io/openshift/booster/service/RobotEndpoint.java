@@ -18,56 +18,61 @@ package io.openshift.booster.service;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 //This class provides a RESTful API with a /run method that can be triggered through the main app webpage
 
-
 @Path("/my_robot")
 @Component
 public class RobotEndpoint {
-    
-    //private static final Logger log = LoggerFactory.getLogger(Application.class);
 
-    // This contains the uri of the Robot APi that this application is invoking. The value is defined in application.properties.
+    // private static final Logger log = LoggerFactory.getLogger(Application.class);
+
+    // This contains the uri of the Robot APi that this application is invoking. The
+    // value is defined in application.properties.
     // Set it to your specific API
     @Value("${hub.controller.uri}")
     private String hubControllerEndpoint;
-    
+
     private RestTemplate restTemplate = new RestTemplate();
-    
+
     // This method checks if the HubController can be reached
-    @GET   
-    public Object ping() {                
-        
+    @GET
+    public Object ping() {
+
         System.out.println("Ping method invoked");
-        String response = restTemplate.getForObject(hubControllerEndpoint, String.class);        
+        String response = restTemplate.getForObject(hubControllerEndpoint, String.class);
         return response;
     }
 
-    // This method should execute the program steps for the robot. It can be invoked by the main application website 
+    // This method should execute the program steps for the robot. It can be invoked
+    // by the main application website
     @POST
     @Path("/run")
     public Object run() {
-        
+
         System.out.println("Run method invoked");
-        
+
         String response = "";
 
-        // Example GET invokation of the Robot API       
-        //response = restTemplate.getForObject(hubControllerEndpoint + "/power", String.class);  
-        
-        // Example POST invokation of the Robot API       
-        //HttpEntity<String> request = new HttpEntity<>(new String(""));
-        //response = restTemplate.postForObject(hubControllerEndpoint +"/forward/5", request, String.class);        
-        
+        // Example GET invokation of the Robot API
+        // response = restTemplate.getForObject(hubControllerEndpoint +
+        // "/power?user_key=<YOUR USER KEY>", String.class);
+
+        // Example POST invokation of the Robot API
+        //MultiValueMap<String, String> paramMap = new LinkedMultiValueMap<String, String>();
+        //paramMap.add("user_key", "<YOUR USER KEY>");
+        //HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(paramMap,
+        //        new LinkedMultiValueMap<String, String>());
+        //response = restTemplate.postForObject(hubControllerEndpoint + "/forward/5", request, String.class);
+
         return response;
     }
 
-    
 }
