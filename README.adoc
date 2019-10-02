@@ -10,7 +10,7 @@ To run this application on your local host:
 
 [source,bash,options="nowrap",subs="attributes+"]
 ----
-$ cd hub-controller-live
+$ cd starter-app-java
 
 $ mvn spring-boot:run
 ----
@@ -39,6 +39,8 @@ NOTE: To stop your running application in a Linux or macOS terminal, use `CTRL+C
 . Make your change (e.g. edit `src/main/resources/static/index.html`).
 . Restart your application.
 . Confirm your change appears.
+
+HINT: You can also add the Maven spring dev dependency to enable hot reloading of changed classes.
 
 
 == Running the Application on the OpenShift Cluster
