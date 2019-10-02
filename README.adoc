@@ -1,4 +1,4 @@
-= Robot Controller Application Template - Spring Boot Booster
+= Robot Controller Application Template - Spring Boot Java
 
 IMPORTANT: This application requires Java 8 JDK or greater and Maven 3.3.x or greater.
 
