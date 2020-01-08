@@ -34,11 +34,15 @@ public class RobotEndpoint {
 
     // private static final Logger log = LoggerFactory.getLogger(Application.class);
 
-    // This contains the uri of the Robot APi that this application is invoking. The
+    // This properties contains the uri adn the userkey of the Robot APi that this application is invoking. The
     // value is defined in application.properties.
     // Set it to your specific API
     @Value("${hub.controller.uri}")
     private String hubControllerEndpoint;
+
+    // and 3Scale userkey 
+    @Value("${3scale.token}")
+    private String userKey;
 
     private RestTemplate restTemplate = new RestTemplate();
 
@@ -63,11 +67,11 @@ public class RobotEndpoint {
 
         // Example GET invokation of the Robot API
         // response = restTemplate.getForObject(hubControllerEndpoint +
-        // "/power?user_key=<YOUR USER KEY>", String.class);
+        // "/power?user_key="+userKey, String.class);
 
         // Example POST invokation of the Robot API
         //MultiValueMap<String, String> paramMap = new LinkedMultiValueMap<String, String>();
-        //paramMap.add("user_key", "<YOUR USER KEY>");
+        //paramMap.add("user_key", userKey);
         //HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(paramMap,
         //        new LinkedMultiValueMap<String, String>());
         //response = restTemplate.postForObject(hubControllerEndpoint + "/forward/5", request, String.class);
