@@ -87,10 +87,10 @@ public class RobotService {
 
     public int bestWay(Distances d){
 
-        if (d.right < LIMIT_FREE && d.frontright < (LIMIT_FREE+200) && d.front > LIMIT_GO && d.frontleft > LIMIT_FREE && d.frontright > LIMIT_FREE){
+        if (d.fullright < LIMIT_FREE && d.right < LIMIT_FREE && d.frontright < (LIMIT_FREE+200) && d.front > LIMIT_GO && d.frontleft > LIMIT_FREE && d.frontright > LIMIT_FREE){
             this.actions.add(decisionForward(d));
             return 0;
-        } else if (d.right < LIMIT_FREE && d.frontright < (LIMIT_FREE+200) && d.frontleft > (d.frontright +2) && d.frontleft > (d.right +2)){
+        } else if (d.fullright < LIMIT_FREE && d.right < LIMIT_FREE && d.frontright < (LIMIT_FREE+200) && d.frontleft > (d.frontright +2) && d.frontleft > (d.right +2)){
             this.actions.add(decistionLeft(d));
             return -22;
         } else if (d.fullright > LIMIT_WALL) {
