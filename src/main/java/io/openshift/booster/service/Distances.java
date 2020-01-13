@@ -10,6 +10,6 @@ class Distances {
     public Integer fullright;
     @Override
     public String toString() {
-        return "Links " + left + " front " + front + " right " + right;
+        return "Left " + left + " frontleft " + frontleft +" front " + front + " frontright " + frontright+ " right " + right + " fullright " + fullright;
     }
 }
