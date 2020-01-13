@@ -3,7 +3,7 @@ metadata:
 projects:
   - name: starter-app-java
     source:
-      location: 'https://github.com/cloud-native-robotz-hackathon/starter-app-java.git'
+      location: 'http://gitea-gitea.apps.cluster-berlin-c30f.berlin-c30f.example.opentlc.com/marvin/starter-app-java.git'
       type: git
       branch: master
 components:
