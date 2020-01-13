@@ -42,7 +42,7 @@ public class RobotService {
         d.front = distance();
         act("/servo/125");
         d.frontleft = distance();
-        act("/servo/160");
+        act("/servo/175");
         d.left = distance();
         return d;
 
@@ -98,7 +98,7 @@ public class RobotService {
             return d.frontright > d.right ? 44 : 22;
         } else {
             this.actions.add(decistionLeftFallBack(d));
-            return -11;
+            return -22;
         }
 
     }
