@@ -15,10 +15,14 @@
  */
 package io.openshift.booster.service;
 
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Component;
@@ -32,6 +36,9 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class RobotEndpoint {
 
+    @Autowired
+    RobotService service;
+
     // private static final Logger log = LoggerFactory.getLogger(Application.class);
 
     // This properties contains the uri adn the userkey of the Robot APi that this application is invoking. The
@@ -40,7 +47,7 @@ public class RobotEndpoint {
     @Value("${hub.controller.uri}")
     private String hubControllerEndpoint;
 
-    // and 3Scale userkey 
+    // and 3Scale userkey
     @Value("${3scale.token}")
     private String userKey;
 
@@ -55,10 +62,41 @@ public class RobotEndpoint {
         return response;
     }
 
+    @GET
+    @Path("/actions")
+    public List<String> actions() {
+        return this.service.actions;
+    }
+
+    @GET
+    @Path("/nomove")
+    public int nomoves() {
+        return this.service.noMoveCount;
+    }
+    @POST
+    @Path("/run")
+    public Object two() {
+        this.service.actions.clear();
+
+             System.out.println("Run method invoked");
+
+        String response = "";
+
+        // Example GET invokation of the Robot API
+        // response = restTemplate.getForObject(hubControllerEndpoint +
+        // "/power?user_key="+userKey, String.class);
+
+        // Example POST invokation of the Robot API
+        //response = this.service.guckmal().toString();
+        this.service.driveForward(30);
+        response = this.service.stategy2();
+        System.out.println(response);
+        return response;
+    }
     // This method should execute the program steps for the robot. It can be invoked
     // by the main application website
     @POST
-    @Path("/run")
+    @Path("/run2")
     public Object run() {
 
         System.out.println("Run method invoked");
@@ -70,12 +108,9 @@ public class RobotEndpoint {
         // "/power?user_key="+userKey, String.class);
 
         // Example POST invokation of the Robot API
-        //MultiValueMap<String, String> paramMap = new LinkedMultiValueMap<String, String>();
-        //paramMap.add("user_key", userKey);
-        //HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(paramMap,
-        //        new LinkedMultiValueMap<String, String>());
-        //response = restTemplate.postForObject(hubControllerEndpoint + "/forward/5", request, String.class);
-
+        //response = this.service.guckmal().toString();
+        response = this.service.go();
+        System.out.println(response);
         return response;
     }
 

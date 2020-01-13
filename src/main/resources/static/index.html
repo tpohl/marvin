@@ -22,12 +22,16 @@
 </div>
 </div>
 
-                   
+
             <button id="invoke"  class="btn btn-success">Run</button>
-        
+
 
         <p class="lead">Result:</p>
-        <pre><code id="greeting-result">Invoke the service to see the result.</code></pre>
+        <ul class="list-group" id="actions">
+
+        <pre><code id="result">Invoke the service to see the result.</code></pre>
+
+        </ul>
     </div>
 </div>
 
@@ -42,10 +46,48 @@
       $.post("/api/my_robot/run", function(data, status){
         alert("Data: " + data + "\nStatus: " + status);
       });
-      
+
     });
   });
 </script>
+
+ <script>
+    (function() {
+      var status = $('#result');
+       var cList = $('#actions');
+        poll = function() {
+          $.ajax({
+            url: 'api/my_robot/actions',
+            dataType: 'json',
+            type: 'get',
+            success: function(data) { // check if available
+
+             // status.text(JSON.stringify(data)); // get and print data string
+                //clearInterval(pollInterval); // optional: stop poll function
+
+            cList.empty();
+            $.each(data, function(i)
+            {
+                var li = $('<li/>')
+                    .addClass('list-group-item')
+                    .attr('role', 'menuitem')
+                    .text(data[i])
+                    .appendTo(cList);
+
+            });
+            $('html, body').scrollTop($(document).height());
+            },
+            error: function() { // error logging
+              console.log('Error!');
+            }
+          });
+        },
+        pollInterval = setInterval(function() { // run function every 2000 ms
+          poll();
+          }, 2000);
+        poll(); // also run function on init
+    })();
+  </script>
 
 </body>
 

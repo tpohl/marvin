@@ -1,0 +1,16 @@
+kind: LocalConfig
+apiversion: odo.openshift.io/v1alpha1
+ComponentSettings:
+  Type: java:8
+  SourceLocation: ./
+  SourceType: local
+  Ports:
+  - 8778/TCP
+  - 8080/TCP
+  - 8443/TCP
+  Application: app
+  Project: marvin-java-dev
+  Name: java-starter-app-hqia
+  Url:
+  - Name: java-starter-app-hqia-8080
+    Port: 8080
